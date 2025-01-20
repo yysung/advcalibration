@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 scaler = MinMaxScaler()
 
 
-with open("./../../data/questions_do_not_upload/human_team_per_question.pkl", "rb") as f:  # 'rb' mode is for reading binary
-    team_per_question = pickle.load(f)
+with open("./../data/questions_packets/human_team_per_question.pkl", "rb") as file:
+    team_per_question = pickle.load(file)
 tpq_df = pd.DataFrame(team_per_question)
 
 def calculate_SHq(question):
