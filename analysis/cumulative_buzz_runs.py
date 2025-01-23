@@ -31,8 +31,8 @@ for packet in range(1, 13):
         
         # team_tmp = [item[1][0] for item in question['position'].items()]
         # teams_participated = [re.search(r'\[(\w+\d+),', item).group(1) for item in team_tmp]
-        human_teams_participated = team_per_question[question['tossup_index']]['human_teams']
-        model_teams_participated = team_per_question[question['tossup_index']]['model_teams']
+        human_teams_participated = [team for team in team_per_question[question['tossup_index']]['seen'] if team.startswith('H')]
+        model_teams_participated = [team for team in team_per_question[question['tossup_index']]['seen'] if team.startswith('M')]
         
         first_model = question['M1']
         for run_index, run in enumerate(first_model):
