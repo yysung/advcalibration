@@ -12,17 +12,13 @@ import matplotlib.colors as mcolors
 import pdb
 import seaborn as sns
 
-with open("./../data/questions_packets/human_team_per_question.pkl", "rb") as file:
+
+import pickle
+import re
+with open("./../data/questions_packets/human_model_team_per_question.pkl", "rb") as file:
     team_per_question = pickle.load(file)
-    
-Team_per_question = [item['total_human_teams'] for item in team_per_question]
-team_set = set()
-for teams in Team_per_question:
-    for team in teams:
-        team_set.add(team) 
-all_teams = list(team_set)
-all_teams.remove('A')
-all_teams = [team for team in all_teams if team not in ['M4','M5', 'M6']]
+with open("./../data/questions_packets/all_teams.pkl", "rb") as file:
+    all_teams = pickle.load(file)
 
 run_stats={}
 for team in all_teams:
@@ -33,10 +29,10 @@ for packet in range(1, 13):
     data = json.load(open(f'./model_human_output/packet{packet}_model_human_output.json', 'r'))
     for q_idx, question in enumerate(data):
         
-        team_tmp = [item[1][0] for item in question['position'].items()]
-        teams_participated = [re.search(r'\[(\w+\d+),', item).group(1) for item in team_tmp]
-        human_teams_participated = [team for team in teams_participated if team.startswith('H')]
-        model_teams_participated = [team for team in teams_participated if team.startswith('M')]
+        # team_tmp = [item[1][0] for item in question['position'].items()]
+        # teams_participated = [re.search(r'\[(\w+\d+),', item).group(1) for item in team_tmp]
+        human_teams_participated = [team for team in team_per_question[question['tossup_index']]['seen'] if team.startswith('H')]
+        model_teams_participated = [team for team in team_per_question[question['tossup_index']]['seen'] if team.startswith('M')]
         
         first_model = question['M1']
         for run_index, run in enumerate(first_model):
@@ -146,6 +142,8 @@ model_cumulative_incorrect_counts = {
     team: team_cumulative_incorrect_counts[team] / np.maximum(team_cumulative_run_counts[team], 1)
     for team in model_teams
 }
+
+
 
 # Plot Noramlized Cumulative Buzz Rates
 adjusted_runs = [run + 1 for run in runs]
