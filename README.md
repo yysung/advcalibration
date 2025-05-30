@@ -1,6 +1,6 @@
 # LLM Calibration Evaluation 
 
-This repository contains the data and code used in our **LLM Calibration Evaluation** project.
+This repository contains the data and code used in our **GRACE: A Granular Benchmark for Evaluating Model Calibration against Human Calibration** paper that was accepted to ACL 2025, Main Conference.
 
 ## 📂 Accessing the Data
 
