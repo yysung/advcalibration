@@ -55,5 +55,5 @@ from grace_q import calculate_Grace_q_non_adjusted, calculate_Grace_q_adjusted
 #     "position": [{"H1": "[H1] +++"}, ...]
 # }
 
-score_non_adjusted = calculate_Grace_q_non_adjusted(question, elicit="raw")
-score_adjusted = calculate_Grace_q_adjusted(question, elicit="raw")
+score_non_adjusted = calculate_Grace_q_non_adjusted(question, elicit="logit")
+score_adjusted = calculate_Grace_q_adjusted(question, elicit="logit")
