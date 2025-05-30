@@ -1,4 +1,4 @@
-# LLM Calibration Evaluation 
+# GRACE: A Granular Benchmark for Evaluating Model Calibration against Human Calibration (ACL 2025, Main)
 
 This repository contains the data and code used in our **GRACE: A Granular Benchmark for Evaluating Model Calibration against Human Calibration** paper that was accepted to ACL 2025, Main Conference.
 
